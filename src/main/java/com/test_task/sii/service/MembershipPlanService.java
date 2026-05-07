@@ -10,6 +10,9 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class MembershipPlanService {
     private final MembershipPlanRepository membershipPlanRepository;
@@ -33,6 +36,18 @@ public class MembershipPlanService {
         newPlan.setGym(currentGym);
         MembershipPlan savedPlan = membershipPlanRepository.save(newPlan);
         return convertEntityToDTO(savedPlan);
+    }
+
+    public List<MembershipPlanDTO> getAllPlansForGym(Long gymId) {
+        if (!gymRepository.existsById(gymId)) {
+            throw new EntityNotFoundException("Gym with ID: " + gymId + " is not found");
+        }
+        List<MembershipPlan> membershipPlanList = membershipPlanRepository.findByGymId(gymId);
+        List<MembershipPlanDTO> membershipPlanDTOList = new ArrayList<>();
+        for (MembershipPlan plan : membershipPlanList){
+            membershipPlanDTOList.add(convertEntityToDTO(plan));
+        }
+        return membershipPlanDTOList;
     }
 
     private MembershipPlanDTO convertEntityToDTO(MembershipPlan membershipPlan){
