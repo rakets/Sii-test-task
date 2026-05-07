@@ -10,6 +10,9 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class MemberService {
     private final MembershipPlanRepository membershipPlanRepository;
@@ -39,6 +42,15 @@ public class MemberService {
         newMember.setMembershipPlan(plan);
         Member response = memberRepository.save(newMember);
         return convertEntityToDTO(response);
+    }
+
+    public List<MemberDTO> getAllMembers() {
+        List<Member> allMembers = memberRepository.findAll();
+        List<MemberDTO> memberDTOList = new ArrayList<>();
+        for (Member member : allMembers) {
+            memberDTOList.add(convertEntityToDTO(member));
+        }
+        return memberDTOList;
     }
 
     private Member convertDTOtoEntity(MemberDTO memberDTO) {
