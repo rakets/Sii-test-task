@@ -3,8 +3,8 @@ package com.test_task.sii.service;
 import com.test_task.sii.dto.GymDTO;
 import com.test_task.sii.entity.Gym;
 import com.test_task.sii.repository.GymRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +46,7 @@ public class GymService {
         return gymEntity;
     }
 
-    private GymDTO convertEntityToDTO(Gym gym){
+    public GymDTO convertEntityToDTO(Gym gym){
         GymDTO gymDTO = new GymDTO();
         gymDTO.setId(gym.getId());
         gymDTO.setName(gym.getName());
