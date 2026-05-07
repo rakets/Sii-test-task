@@ -50,7 +50,7 @@ public class MembershipPlanService {
         return membershipPlanDTOList;
     }
 
-    private MembershipPlanDTO convertEntityToDTO(MembershipPlan membershipPlan){
+    public MembershipPlanDTO convertEntityToDTO(MembershipPlan membershipPlan){
         MembershipPlanDTO planDTO = new MembershipPlanDTO();
         planDTO.setId(membershipPlan.getId());
         planDTO.setName(membershipPlan.getName());

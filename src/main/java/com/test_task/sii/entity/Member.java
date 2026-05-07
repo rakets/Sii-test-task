@@ -79,10 +79,6 @@ public class Member {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
     public MemberStatus getStatus() {
         return status;
     }
