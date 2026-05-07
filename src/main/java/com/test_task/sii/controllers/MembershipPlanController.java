@@ -28,7 +28,7 @@ public class MembershipPlanController {
 
     @GetMapping("/all-plans")
     public ResponseEntity<List<MembershipPlanDTO>> getAllPlans(@PathVariable("gymId") Long gymId) {
-        List<MembershipPlanDTO> response = new ArrayList<>();
+        List<MembershipPlanDTO> response = membershipPlanService.getAllPlansForGym(gymId);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
