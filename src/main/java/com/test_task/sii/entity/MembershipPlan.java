@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 
 @Entity
@@ -74,12 +75,19 @@ public class MembershipPlan {
         this.monthlyPrice = monthlyPrice;
     }
 
-    public String getCurrency() {
-        return currency;
+    public Currency getCurrency() {
+        if (this.currency == null) {
+            return null;
+        }
+        return Currency.getInstance(currency);
     }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
+    public void setCurrency(Currency currency) {
+        if (currency != null) {
+            this.currency = currency.getCurrencyCode();
+        } else {
+            this.currency = null;
+        }
     }
 
     public Integer getDurationMonths() {

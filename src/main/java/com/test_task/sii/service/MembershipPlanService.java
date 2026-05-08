@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 
 @Service
@@ -27,6 +28,11 @@ public class MembershipPlanService {
 
     @Transactional
     public MembershipPlanDTO saveNewMembershipPlan(MembershipPlanDTO membershipPlanDTO, Long gymId) {
+        try {
+            Currency.getInstance(membershipPlanDTO.getCurrency());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid currency code");
+        }
         Gym currentGym = gymRepository.findById(gymId).orElseThrow(() ->
                 new EntityNotFoundException("Gym with ID: " + gymId + " is not found"));
         if (membershipPlanRepository.existsByNameAndGym_Id(membershipPlanDTO.getName(), currentGym.getId())) {
@@ -56,7 +62,7 @@ public class MembershipPlanService {
         planDTO.setName(membershipPlan.getName());
         planDTO.setType(membershipPlan.getType());
         planDTO.setMonthlyPrice(membershipPlan.getMonthlyPrice());
-        planDTO.setCurrency(membershipPlan.getCurrency());
+        planDTO.setCurrency(membershipPlan.getCurrency().getCurrencyCode());
         planDTO.setDurationMonths(membershipPlan.getDurationMonths());
         planDTO.setMaxMembers(membershipPlan.getMaxMembers());
 
@@ -70,7 +76,7 @@ public class MembershipPlanService {
         planEntity.setName(membershipPlanDTO.getName());
         planEntity.setType(membershipPlanDTO.getType());
         planEntity.setMonthlyPrice(membershipPlanDTO.getMonthlyPrice());
-        planEntity.setCurrency(membershipPlanDTO.getCurrency());
+        planEntity.setCurrency(Currency.getInstance(membershipPlanDTO.getCurrency()));
         planEntity.setDurationMonths(membershipPlanDTO.getDurationMonths());
         planEntity.setMaxMembers(membershipPlanDTO.getMaxMembers());
         return planEntity;
