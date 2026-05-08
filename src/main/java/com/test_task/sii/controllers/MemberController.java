@@ -31,4 +31,11 @@ public class MemberController {
         List<MemberDTO> allMembers = memberService.getAllMembers();
         return ResponseEntity.status(HttpStatus.OK).body(allMembers);
     }
+
+    @PatchMapping("/cancel-membership/{memberId}")
+    public ResponseEntity<MemberDTO> cancelMembership(@PathVariable("memberId") Long memberId) {
+        MemberDTO response = memberService.cancelMembership(memberId);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
 }

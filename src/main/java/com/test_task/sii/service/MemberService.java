@@ -53,6 +53,18 @@ public class MemberService {
         return memberDTOList;
     }
 
+    @Transactional
+    public MemberDTO cancelMembership(Long memberId) {
+        Member member = memberRepository.findById(memberId).orElseThrow(() ->
+                new EntityNotFoundException("Member with ID: " + memberId + " is not found."));
+        if (member.getStatus().equals(MemberStatus.CANCELLED)) {
+            throw new IllegalStateException("Members's status is already CANCELLED.");
+        }
+        member.setStatus(MemberStatus.CANCELLED);
+        memberRepository.save(member);
+        return convertEntityToDTO(member);
+    }
+
     private Member convertDTOtoEntity(MemberDTO memberDTO) {
         Member member = new Member();
         member.setFullname(memberDTO.getFullname());
