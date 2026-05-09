@@ -1,6 +1,7 @@
 package com.test_task.sii.controllers;
 
 import com.test_task.sii.dto.GymDTO;
+import com.test_task.sii.dto.ReportDTO;
 import com.test_task.sii.entity.Gym;
 import com.test_task.sii.service.GymService;
 import jakarta.validation.Valid;
@@ -31,5 +32,11 @@ public class GymController {
     public ResponseEntity<List<GymDTO>> getAllGyms() {
         List<GymDTO> gymList = gymService.getAllGyms();
         return ResponseEntity.status(HttpStatus.OK).body(gymList);
+    }
+
+    @GetMapping("/report")
+    public ResponseEntity<List<ReportDTO>> getTotalReport() {
+        List<ReportDTO> response = gymService.getTotalReport();
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

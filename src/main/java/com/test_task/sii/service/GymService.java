@@ -1,6 +1,7 @@
 package com.test_task.sii.service;
 
 import com.test_task.sii.dto.GymDTO;
+import com.test_task.sii.dto.ReportDTO;
 import com.test_task.sii.entity.Gym;
 import com.test_task.sii.repository.GymRepository;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,10 @@ public class GymService {
             gymDTOList.add(convertEntityToDTO(gym));
         }
         return gymDTOList;
+    }
+
+    public List<ReportDTO> getTotalReport() {
+        return gymRepository.getTotalReport();
     }
 
     private Gym convertDTOtoEntity(GymDTO gymDTO){
