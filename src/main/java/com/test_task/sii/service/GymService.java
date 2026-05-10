@@ -43,7 +43,7 @@ public class GymService {
         return gymRepository.getTotalReport();
     }
 
-    private Gym convertDTOtoEntity(GymDTO gymDTO){
+    public Gym convertDTOtoEntity(GymDTO gymDTO){
         Gym gymEntity = new Gym();
         gymEntity.setName(gymDTO.getName());
         gymEntity.setAddress(gymDTO.getAddress());
