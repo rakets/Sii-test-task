@@ -90,7 +90,6 @@ Whole endpoints documentation you can find in project folder -> **Sii-test-task.
     http://localhost:8080/api/member/all
     ```
 7. **Cancel a membership:**
-    ```bash
     for example, we cancel membership plan for member with ID = 1
     ```bash
     http://localhost:8080/api/member/cancel-membership/1
