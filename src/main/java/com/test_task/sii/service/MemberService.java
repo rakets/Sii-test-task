@@ -57,22 +57,22 @@ public class MemberService {
     public MemberDTO cancelMembership(Long memberId) {
         Member member = memberRepository.findById(memberId).orElseThrow(() ->
                 new EntityNotFoundException("Member with ID: " + memberId + " is not found."));
-        if (member.getStatus().equals(MemberStatus.CANCELLED)) {
-            throw new IllegalStateException("Members's status is already CANCELLED.");
+        if (member.getStatus() == MemberStatus.CANCELLED) {
+            throw new IllegalStateException("Member's status is already CANCELLED.");
         }
         member.setStatus(MemberStatus.CANCELLED);
-        memberRepository.save(member);
-        return convertEntityToDTO(member);
+        Member savedMember = memberRepository.save(member);
+        return convertEntityToDTO(savedMember);
     }
 
-    private Member convertDTOtoEntity(MemberDTO memberDTO) {
+    public Member convertDTOtoEntity(MemberDTO memberDTO) {
         Member member = new Member();
         member.setFullname(memberDTO.getFullname());
         member.setEmail(memberDTO.getEmail());
         return member;
     }
 
-    private MemberDTO convertEntityToDTO(Member member) {
+    public MemberDTO convertEntityToDTO(Member member) {
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setId(member.getId());
         memberDTO.setFullname(member.getFullname());
