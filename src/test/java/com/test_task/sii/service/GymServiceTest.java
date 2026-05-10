@@ -12,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,7 +25,6 @@ public class GymServiceTest {
 
     @InjectMocks
     private GymService gymService;
-
 
     GymDTO createGymDTO() {
         GymDTO gymDTO = new GymDTO();
