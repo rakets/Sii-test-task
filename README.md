@@ -191,6 +191,10 @@ Sii-test-task/
 │   │
 │   └── test/
 │       └── java/com/test_task.sii/
+│           ├── service/
+│           │   ├── GymServiceTest.java
+│           │   ├── MemberServiceTest.java
+│           │   └── MembershipPlanServiceTest.java
 │           └── SiiApplicationTests.java
 │
 ├── pom.xml
