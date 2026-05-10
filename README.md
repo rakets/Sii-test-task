@@ -18,6 +18,7 @@
 * [How to Run the Project](#-how-to-run-the-project)
 * [REST	API	endpoints](#-rerst-api-endpoints)
 * [Project Structure](#-project-structure)
+* [Database Structure](#-database-structure)
 
 ---
 
@@ -54,16 +55,30 @@
 
 ## 🚀 REST	API	endpoints
 
-Whole endpoints documentation you can find in project folder -> **Sii-test-task.postman_collection.json**
+Whole endpoints documentation for POSTMAN you can find in project folder -> **./docs/Sii-test-task.postman_collection.json**
+
+<p align="center">
+    <img src="./docs/postman-documentation/postman-documentation.png" width="600" hight="350"/>
+</p>
 
 1. **Create a new gym:**
     ```bash
     http://localhost:8080/api/gyms/new
     ```
+
+    <p align="center">
+        <img src="./docs/postman-documentation/new-gym.jpg" width="600" hight="350"/>
+    </p>
+
 2. **List all gyms:**
     ```bash
     http://localhost:8080/api/gyms/all-gyms
     ```
+
+    <p align="center">
+        <img src="./docs/postman-documentation/all-gyms.jpg" width="600" hight="350"/>
+    </p>
+
 3. **Create	a new membership plan for a given gym:**
     ```bash
     for example, we try to create new plan for gym with ID = 1
@@ -71,6 +86,11 @@ Whole endpoints documentation you can find in project folder -> **Sii-test-task.
     ```bash
     http://localhost:8080/api/1/membership-plan/new
     ```
+
+    <p align="center">
+        <img src="./docs/postman-documentation/new-plan.png" width="600" hight="350"/>
+    </p>
+
 4. **List all membership plans for a given gym:**
      ```bash
     for example, we try to get all plans for gym with ID = 1
@@ -78,6 +98,11 @@ Whole endpoints documentation you can find in project folder -> **Sii-test-task.
     ```bash
     http://localhost:8080/api/1/membership-plan/all-plans
     ```
+
+    <p align="center">
+        <img src="./docs/postman-documentation/all-plans.png" width="600" hight="350"/>
+    </p>
+
 5. **Register a new	member to a given membership plan (validate	capacity):**
      ```bash
     for example, we try to register new member for gym with ID = 1 and plan with ID = 1
@@ -85,21 +110,100 @@ Whole endpoints documentation you can find in project folder -> **Sii-test-task.
     ```bash
     http://localhost:8080/api/member/1/1/new
     ```
+
+    <p align="center">
+        <img src="./docs/postman-documentation/new-member.png" width="600" hight="350"/>
+    </p>
+
 6. **List all members - include the	plan name, gym name and status:**
     ```bash
     http://localhost:8080/api/member/all
     ```
+
+    <p align="center">
+        <img src="./docs/postman-documentation/get-all-members.png" width="600" hight="350"/>
+    </p>
+
 7. **Cancel a membership:**
+
     <p>for example, we cancel membership plan for member with ID = 1</p>
+
     ```bash
     http://localhost:8080/api/member/cancel-membership/1
     ```
+
+    <p align="center">
+        <img src="./docs/postman-documentation/cancel-membership-plan.png" width="600" hight="350"/>
+    </p>
+
 8. **Return the	revenue	report:**
     ```bash
     http://localhost:8080/api/gyms/report
     ```
 
+    <p align="center">
+        <img src="./docs/postman-documentation/report.png" width="600" hight="350"/>
+    </p>
+
 ---
 
 ## 📂 Project Structure
+
+```
+Sii-test-task/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/com/test_task.sii/
+│   │   │   │
+│   │   │   ├── controller/
+│   │   │   │   ├── GymController.java
+│   │   │   │   ├── MemberController.java
+│   │   │   │   └── MembershipPlanController.java
+│   │   │   │
+│   │   │   ├── dto/
+│   │   │   │   ├── GymDTO.java
+│   │   │   │   ├── MemberDTO.java
+│   │   │   │   ├── MembershipPlanDTO.java
+│   │   │   │   └── ReportDTO.java
+│   │   │   │
+│   │   │   ├── entity/
+│   │   │   │   ├── Gym.java
+│   │   │   │   ├── Member.java
+│   │   │   │   ├── MembershipPlan.java
+│   │   │   │   ├── MemberStatus.java
+│   │   │   │   └── PlanType.java
+│   │   │   │
+│   │   │   ├── repository/
+│   │   │   │   ├── GymRepository.java
+│   │   │   │   ├── MemberRepository.java
+│   │   │   │   └── MembershipPlanRepository.java
+│   │   │   │
+│   │   │   ├── service/
+│   │   │   │   ├── GymService.java
+│   │   │   │   ├── MemberService.java
+│   │   │   │   └── MembershipPlanService.java
+│   │   │   │
+│   │   │   └── SiiApplication.java
+│   │   │
+│   │   └──  resources/
+│   │        └── application.properties
+│   │
+│   └── test/
+│       └── java/com/test_task.sii/
+│           └── SiiApplicationTests.java
+│
+├── pom.xml
+├── README.md
+└── .gitignore
+```
+
+---
+
+## 📂 Database Structure
+
+<p align="center">
+    <img src="./docs/database.jpg" width="600" hight="350"/>
+</p>
+
 
