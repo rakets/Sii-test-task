@@ -16,7 +16,7 @@
 
 * [Tech Stack](#-tech-stack)
 * [How to Run the Project](#-how-to-run-the-project)
-* [REST	API	endpoints](#-rerst-api-endpoints)
+* [REST	API	endpoints](#-rest-api-endpoints)
 * [Project Structure](#-project-structure)
 * [Database Structure](#-database-structure)
 
@@ -67,7 +67,7 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
     ```
 
     <p align="center">
-        <img src="./docs/postman-documentation/new-gym.jpg" width="600" hight="350"/>
+        <img src="./docs/postman-documentation/new-gym.png" width="600" hight="350"/>
     </p>
 
 2. **List all gyms:**
@@ -80,9 +80,9 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
     </p>
 
 3. **Create	a new membership plan for a given gym:**
-    ```bash
-    for example, we try to create new plan for gym with ID = 1
-    ```
+
+    <p> for example, we try to create new plan for gym with ID = 1. </p>
+
     ```bash
     http://localhost:8080/api/1/membership-plan/new
     ```
@@ -92,9 +92,9 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
     </p>
 
 4. **List all membership plans for a given gym:**
-     ```bash
-    for example, we try to get all plans for gym with ID = 1
-    ```
+    
+    <p> for example, we try to get all plans for gym with ID = 1. </p>
+    
     ```bash
     http://localhost:8080/api/1/membership-plan/all-plans
     ```
@@ -104,9 +104,9 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
     </p>
 
 5. **Register a new	member to a given membership plan (validate	capacity):**
-     ```bash
-    for example, we try to register new member for gym with ID = 1 and plan with ID = 1
-    ```
+    
+    <p> for example, we try to register new member for gym with ID = 1 and plan with ID = 1. </p>
+
     ```bash
     http://localhost:8080/api/member/1/1/new
     ```
