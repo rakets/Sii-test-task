@@ -71,7 +71,7 @@ public class MembershipPlanService {
         return planDTO;
     }
 
-    private MembershipPlan convertDTOtoEntity(MembershipPlanDTO membershipPlanDTO){
+    public MembershipPlan convertDTOtoEntity(MembershipPlanDTO membershipPlanDTO){
         MembershipPlan planEntity = new MembershipPlan();
         planEntity.setName(membershipPlanDTO.getName());
         planEntity.setType(membershipPlanDTO.getType());
