@@ -7,6 +7,7 @@ import com.test_task.sii.entity.MembershipPlan;
 import com.test_task.sii.entity.PlanType;
 import com.test_task.sii.repository.GymRepository;
 import com.test_task.sii.repository.MembershipPlanRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -74,6 +75,7 @@ public class MembershipPlanServiceTest {
         return gymDTO;
     }
 
+    // test for success method 'saveNewMembershipPlan'
     @Test
     void saveNewMembershipPlan_ShouldSaveAndReturnMembershipPlanDTO() {
         // GIVEN
@@ -104,5 +106,62 @@ public class MembershipPlanServiceTest {
         verify(gymRepository, times(1)).findById(gymId);
         verify(membershipPlanRepository, times(1)).existsByNameAndGym_Id(planDTO.getName(), gymId);
         verify(membershipPlanRepository, times(1)).save(any(MembershipPlan.class));
+    }
+
+    // test for exception IllegalArgumentException in method 'saveNewMembershipPlan' when invalid currency code
+    @Test
+    void saveNewMembershipPlan_ShouldThrowIllegalArgumentException() {
+        // GIVEN
+        MembershipPlanDTO planDTO = createMembershipPlanDTO();
+        planDTO.setCurrency("ust");
+        Long gymId = 1L;
+        // WHEN
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> membershipPlanService.saveNewMembershipPlan(planDTO, gymId));
+        // THEN
+        assertEquals("Invalid currency code", exception.getMessage());
+        verify(gymRepository, never()).findById(gymId);
+        verify(membershipPlanRepository, never()).existsByNameAndGym_Id(planDTO.getName(), gymId);
+        verify(membershipPlanRepository, never()).save(any(MembershipPlan.class));
+    }
+
+    // test for exception EntityNotFoundException in method 'saveNewMembershipPlan' when gym is not found
+    @Test
+    void saveNewMembershipPlan_ShouldThrowEntityNotFoundException() {
+        // GIVEN
+        MembershipPlanDTO planDTO = createMembershipPlanDTO();
+        Long gymId = 1L;
+
+        when(gymRepository.findById(gymId)).thenReturn(Optional.empty());
+        // WHEN
+        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
+                () -> membershipPlanService.saveNewMembershipPlan(planDTO, gymId));
+        // THEN
+        assertEquals("Gym with ID: " + gymId + " is not found", exception.getMessage());
+        verify(gymRepository, times(1)).findById(gymId);
+        verify(membershipPlanRepository, never()).existsByNameAndGym_Id(planDTO.getName(), gymId);
+        verify(membershipPlanRepository, never()).save(any(MembershipPlan.class));
+    }
+
+    // test for exception IllegalArgumentException in method 'saveNewMembershipPlan' when gym has already plan with same name
+    @Test
+    void saveNewMembershipPlan_PlanWithSameName_ShouldThrowIllegalArgumentException() {
+        // GIVEN
+        MembershipPlanDTO planDTO = createMembershipPlanDTO();
+        Long gymId = 1L;
+
+        Gym gym = createGym();
+        gym.setId(gymId);
+
+        when(gymRepository.findById(gymId)).thenReturn(Optional.of(gym));
+        when(membershipPlanRepository.existsByNameAndGym_Id(planDTO.getName(), gymId)).thenReturn(true);
+        // WHEN
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> membershipPlanService.saveNewMembershipPlan(planDTO, gymId));
+        // THEN
+        assertEquals("Gym has already plan with same name", exception.getMessage());
+        verify(gymRepository, times(1)).findById(gymId);
+        verify(membershipPlanRepository, times(1)).existsByNameAndGym_Id(planDTO.getName(), gymId);
+        verify(membershipPlanRepository, never()).save(any(MembershipPlan.class));
     }
 }
