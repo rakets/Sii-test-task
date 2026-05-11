@@ -64,11 +64,15 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
 1. **Create a new gym:**
 
    **Method:** `POST`
-    **Endpoint:**
+   
+   **Endpoint:**
+    
     ```bash
     http://localhost:8080/api/gyms/new
     ```
+    
     **Request Body Example:**
+    
     ```json
     {
         "name":"Lublin Gym Shark",
@@ -84,7 +88,9 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
 2. **List all gyms:**
 
     **Method:** `GET`
+    
     **Endpoint:**
+    
     ```bash
     http://localhost:8080/api/gyms/all-gyms
     ```
@@ -98,11 +104,14 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
     <p> for example, we try to create new plan for gym with ID = 1. </p>
     
     **Method:** `POST`
+    
     **Endpoint:**
+    
     ```bash
     http://localhost:8080/api/{gymId}/membership-plan/new
     ```
     **Request Body Example:**
+    
     ```json
     {
         "name":"LUX+",
@@ -113,6 +122,7 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
         "maxMembers": 1
     }
     ```
+    
     <p align="center">
         <img src="./docs/postman-documentation/new-plan.png" width="600" hight="350"/>
     </p>
@@ -122,7 +132,9 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
     <p> for example, we try to get all plans for gym with ID = 1. </p>
     
     **Method:** `GET`
+    
     **Endpoint:**
+    
     ```bash
     http://localhost:8080/api/{gymId}/membership-plan/all-plans
     ```
@@ -136,16 +148,20 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
     <p> for example, we try to register new member for gym with ID = 1 and plan with ID = 1. </p>
 
     **Method:** `POST`
+    
     **Endpoint:**
+    
     ```bash
     http://localhost:8080/api/member/{gymId}/{planId}/new
     ```
+    
     **Request Body Example:**
     ```json
     {
         "fullname":"Valiantsi Ushkevich",
         "email":"vushkevih@gmail.com"
     }
+    ```
 
     <p align="center">
         <img src="./docs/postman-documentation/new-member.png" width="600" hight="350"/>
@@ -154,7 +170,9 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
 6. **List all members - include the	plan name, gym name and status:**
     
     **Method:** `GET`
+    
     **Endpoint:**
+    
     ```bash
     http://localhost:8080/api/member/all
     ```
@@ -168,7 +186,9 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
     <p>for example, we cancel membership plan for member with ID = 1</p>
     
     **Method:** `PATCH`
+    
     **Endpoint:**
+    
     ```bash
     http://localhost:8080/api/member/cancel-membership/{memberId}
     ```
@@ -180,7 +200,9 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
 8. **Return the	revenue	report:**
     
     **Method:** `GET`
+    
     **Endpoint:**
+    
     ```bash
     http://localhost:8080/api/gyms/report
     ```
