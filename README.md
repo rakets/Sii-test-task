@@ -62,6 +62,7 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
 </p>
 
 1. **Create a new gym:**
+
    **Method:** `POST`
     **Endpoint:**
     ```bash
@@ -81,6 +82,7 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
     </p>
 
 2. **List all gyms:**
+
     **Method:** `GET`
     **Endpoint:**
     ```bash
@@ -150,6 +152,7 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
     </p>
 
 6. **List all members - include the	plan name, gym name and status:**
+    
     **Method:** `GET`
     **Endpoint:**
     ```bash
@@ -175,6 +178,7 @@ Whole endpoints documentation for POSTMAN you can find in project folder -> **./
     </p>
 
 8. **Return the	revenue	report:**
+    
     **Method:** `GET`
     **Endpoint:**
     ```bash
